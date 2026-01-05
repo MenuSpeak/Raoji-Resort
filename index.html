@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">   
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Raovji Patil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --surface: #0f1114;
+      --muted: #9aa0a6;
+      --gold1: #d4af37;
+      --gold2: #ffcc66;
+      --accent: linear-gradient(90deg, var(--gold1), var(--gold2));
+      --glass: rgba(255, 255, 255, 0.03);
+      --card-radius: 16px;
+      --shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+      --glass-strong: rgba(255, 255, 255, 0.04);
+      --maxw: 1200px;
+      --gap: 20px;
+      --ff-heading: 'Playfair Display', serif;
+      --ff-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      --orange: #ff9800;
+      --green: #4CAF50;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-size: 16px;
+    }
+
+    body {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background image layer */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('bg.png') no-repeat center center/cover;
+      filter: grayscale(100%);
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    body {
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(212, 175, 55, 0.06), transparent 6%),
+                  radial-gradient(1000px 500px at 95% 90%, rgba(255, 204, 102, 0.04), transparent 8%),
+                  var(--bg);
+      color: #e8e6e3;
+      font-family: var(--ff-ui);
+      -webkit-font-smoothing: antialiased;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--maxw);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+    }
+
+    /* Cafe Header - Original Style */
+    .cafe-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px 0;
+    }
+
+    .cafe-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--gold1);
+      text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+      line-height: 1;
+      margin-bottom: 5px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .cafe-name::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: var(--gold1);
+    }
+
+    .cafe-subtitle {
+      font-size: 1.2rem;
+      color: var(--orange);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    .location-info {
+      font-size: 1rem;
+      margin-top: 15px;
+      line-height: 1.6;
+    }
+
+    .location-text {
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .address {
+      color: var(--green);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .mobile-numbers {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 15px;
+    }
+
+    .veg-nonveg {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .veg, .nonveg {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .veg {
+      color: #2e7d32;
+      background: rgba(46, 125, 50, 0.1);
+    }
+
+    .nonveg {
+      color: #c62828;
+      background: rgba(198, 40, 40, 0.1);
+    }
+
+    .veg:hover, .nonveg:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .symbol {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .veg .symbol {
+      background: #4caf50;
+      border: 2px solid #2e7d32;
+    }
+
+    .nonveg .symbol {
+      background: #f44336;
+      border: 2px solid #c62828;
+    }
+
+    /* Location Link Section - Added at bottom */
+    .location-link-section {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(6px);
+      text-align: center;
+    }
+
+    .location-link-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .location-link-header h3 {
+      font-family: var(--ff-heading);
+      color: var(--gold2);
+      font-size: 1.3rem;
+      margin: 0;
+    }
+
+    .location-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--gold1);
+    }
+
+    .map-link-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      color: #0b0b0d;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .map-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    }
+
+    .map-link svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Header and Navigation */
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold1), var(--gold2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b0b0d;
+      font-family: var(--ff-heading);
+      font-size: 20px;
+      font-weight: 700;
+      box-shadow: 0 6px 22px rgba(212, 175, 55, 0.12);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-family: var(--ff-heading);
+      font-size: 20px;
+      letter-spacing: 0.6px;
+    }
+
+    .brand-text p {
+      margin: 2px 0 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .search-container {
+      background: var(--glass);
+      backdrop-filter: blur(6px);
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .search-container input {
+      background: transparent;
+      border: 0;
+      outline: 0;
+      color: inherit;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    /* Tabs Navigation */
+    .tabs-container {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .tabs-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 8px 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .tabs-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      font-size: 14px;
+      color: var(--muted);
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tab.active {
+      background: var(--accent);
+      color: #0b0b0d;
+      border: none;
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
+    }
+
+    /* Menu Grid */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.01));
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      box-shadow: 0 8px 24px rgba(2, 6, 23, 0.6);
+      transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 0.28s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(2, 6, 23, 0.7);
+    }
+
+    .card-header {
+      display: flex;
+      gap: 12px;
+    }
+
+    .thumb {
+      width: 180px;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .card:hover .thumb img {
+      transform: scale(1.06);
+    }
+
+    .card-info {
+      flex: 1;
+    }
+
+    .dish {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      font-family: var(--ff-heading);
+      line-height: 1.3;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--gold2);
+      flex-shrink: 0;
+    }
+
+    .tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      font-size: 11px;
+      color: var(--muted);
+      background: transparent;
+    }
+
+    /* Add to Cart Button */
+    .btn-primary {
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: #0b0b0d;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+      font-size: 13px;
+      width: auto;
+      min-width: 100px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0) scale(0.95);
+    }
+
+    /* Button Animation Effects */
+    .btn-primary.adding {
+      animation: addPulse 0.6s ease;
+    }
+
+    .btn-primary.added {
+      background: linear-gradient(90deg, #10b981, #059669);
+      animation: successPulse 0.8s ease;
+    }
+
+    @keyframes addPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+      }
+    }
+
+    @keyframes successPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+      }
+      25% {
+        transform: scale(1.08);
+        box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+      }
+      50% {
+        transform: scale(0.95);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+      }
+      75% {
+        transform: scale(1.03);
+        box-shadow: 0 7px 25px rgba(16, 185, 129, 0.35);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+      }
+    }
+
+    /* Cart Styles */
+    .cart-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+
+    .cart-button {
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
+      cursor: pointer;
+      position: relative;
+      border: none;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #e74c3c;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .cart-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 11, 13, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 16px;
+    }
+
+    .cart-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-content {
+      background: var(--surface);
+      width: 100%;
+      max-width: 500px;
+      border-radius: var(--card-radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      padding-bottom: 12px;
+    }
+
+    .cart-title {
+      font-family: var(--ff-heading);
+      font-size: 22px;
+      margin: 0;
+      color: var(--gold2);
+    }
+
+    .close-cart {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      font-size: 15px;
+    }
+
+    .item-price {
+      color: var(--gold2);
+      font-size: 14px;
+    }
+
+    .item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .quantity {
+      font-weight: 600;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .remove-item {
+      background: transparent;
+      border: none;
+      color: #e74c3c;
+      cursor: pointer;
+      margin-left: 12px;
+      font-size: 18px;
+    }
+
+    .cart-empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px 0;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .total-amount {
+      color: var(--gold2);
+    }
+
+    .cart-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 16px;
+    }
+
+    .btn-clear {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Resort Information Section - Updated */
+    .resort-information {
+      margin: 20px 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.015);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .resort-title {
+      font-family: var(--ff-heading);
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--gold2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .resort-title svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Customer Billing Form */
+    .billing-form {
+      margin: 20px 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.015);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .billing-title {
+      font-family: var(--ff-heading);
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--gold2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .billing-title svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--gold2);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Customer Billing Summary */
+    .customer-billing-summary {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      display: none;
+    }
+
+    .customer-billing-summary.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .summary-title {
+      font-weight: 600;
+      color: var(--gold2);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-title svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .summary-details {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .summary-details div {
+      margin-bottom: 5px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px 0;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      margin-top: 20px;
+    }
+
+    /* Gold Line */
+    .gold-line {
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.08);
+      margin: 8px 0 16px 0;
+    }
+
+    /* Tablet and Desktop Styles */
+    @media (min-width: 768px) {
+      body {
+        padding: 24px;
+      }
+      
+      .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+      
+      .header {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .brand {
+        flex: 1;
+      }
+      
+      .search-container {
+        width: auto;
+        min-width: 300px;
+      }
+      
+      .tabs-container {
+        grid-column: 1 / -1;
+      }
+      
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .cart-actions {
+        flex-direction: row;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+      
+      .cart-container,
+      .cart-modal,
+      .btn-ghost {
+        display: none;
+      }
+    }
+
+
+    /* Tabs Navigation - Category Buttons */
+.tabs-container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.tabs-scroll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0;
+  justify-content: center;
+}
+
+.tab {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  margin: 2px;
+}
+
+.tab.active {
+  background: linear-gradient(90deg, var(--gold1), var(--gold2));
+  color: #0b0b0d;
+  border: none;
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
+}
+
+/* Hover effect for better UX */
+.tab:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .tabs-scroll {
+    justify-content: flex-start;
+  }
+  
+  .tab {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .tab {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+  .tab {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  
+  .tabs-scroll {
+    justify-content: center;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .tab {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .tabs-scroll {
+    gap: 5px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Cafe Header - Original Style -->
+    <div class="cafe-header">
+      <img src="logo.png" alt="Logo" style="width:400px; height:auto;">
+      <div class="cafe-name">रावजी पाटील</div>
+      <div class="cafe-subtitle">RESORT & BAR</div>
+      <div class="location-info">
+        <div class="location-text"></div>
+        <div class="address"></div>
+        <div class="mobile-numbers">Mob. 90111 61010</div>
+      </div>
+      <div class="veg-nonveg">
+        <div class="veg">
+          <span class="symbol"></span>
+          <span>Veg</span>
+        </div>
+        <div class="nonveg">
+          <span class="symbol"></span>
+          <span>Non Veg</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Menu -->
+    <main class="menu">
+      <div class="menu-head">
+        <div class="controls">
+          <div class="search" role="search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M21 21l-4.35-4.35" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              <circle cx="11" cy="11" r="6" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></circle>
+            </svg>
+            <input id="search" placeholder="Search dishes, ingredients..." />
+          </div>
+
+          <div class="tabs-scroll">
+<button class="tab active" data-cat="all">All</button>
+<button class="tab" data-cat="VEG">Veg</button>
+<button class="tab" data-cat="THALI">Thali</button>
+<button class="tab" data-cat="THALI DETAILS">Thali Details</button>
+<button class="tab" data-cat="NON-VEG">Non-Veg</button>
+<button class="tab" data-cat="COLDRINKS">Cold Drinks</button>
+<button class="tab" data-cat="LIQUOR (QTR)">Liquor (Quarter)</button>
+<button class="tab" data-cat="WINE">Wine</button>
+<button class="tab" data-cat="BEER">Beer</button>
+<button class="tab" data-cat="cigarettes">cigarettes</button>
+
+         </div>
+        </div>
+      </div>
+
+      <section class="menu-grid" id="menuGrid">
+        <!-- Cards injected by JS -->
+      </section>
+    </main>
+
+    <!-- Location Link Section - Added at bottom -->
+    <div class="location-link-section">
+      <div class="location-link-header">
+        <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <h3>Find Us on Google Maps</h3>
+      </div>
+      <div class="map-link-container">
+        <a href="https://maps.app.goo.gl/5zH4t7wcbAiHLKzF7" target="_blank" class="map-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Open in Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Button -->
+  <div class="cart-container">
+    <button class="cart-button" id="cartButton">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+
+  <!-- Cart Modal -->
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-content">
+      <div class="cart-header">
+        <h3 class="cart-title">Your Order</h3>
+        <button class="close-cart" id="closeCart">&times;</button>
+      </div>
+      
+      <!-- Resort Information Section -->
+      <div class="resort-information">
+        <h4 class="resort-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          Resort Information
+        </h4>
+        
+        <div class="form-group">
+          <label class="form-label" for="resortName">Resort Name</label>
+          <input type="text" id="resortName" class="form-input" value="रावजी पाटील RESORT & BAR" readonly />
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="resortAddress">Resort Address</label>
+          <textarea id="resortAddress" class="form-input" rows="2" readonly>रावजी पाटील रिसॉर्ट, कराड रोड, पंढरपूर, महाराष्ट्र</textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="contactNumber">Contact Number</label>
+          <input type="text" id="contactNumber" class="form-input" value="+91 90111 61010" readonly />
+        </div>
+      </div>
+      
+      <!-- Customer Billing Form -->
+      <div class="billing-form">
+        <h4 class="billing-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Customer Billing Information
+        </h4>
+        
+        <div class="form-group">
+          <label class="form-label" for="customerName">Customer Name *</label>
+          <input type="text" id="customerName" class="form-input" placeholder="Enter your full name" oninput="updateBillingSummary()" />
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="roomNumber">Room Number *</label>
+          <input type="text" id="roomNumber" class="form-input" placeholder="Enter your room number (e.g., Room 101, Suite 5)" oninput="updateBillingSummary()" />
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="customerMobile">Mobile Number (Optional)</label>
+          <input type="tel" id="customerMobile" class="form-input" placeholder="Enter your mobile number" oninput="updateBillingSummary()" />
+        </div>
+      </div>
+      
+      <!-- Customer Billing Summary -->
+      <div class="customer-billing-summary" id="customerBillingSummary">
+        <!-- Will be populated by JavaScript -->
+      </div>
+      
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will be inserted here -->
+        <div class="cart-empty" id="cartEmpty">Your cart is empty</div>
+      </div>
+      
+      <div class="cart-total">
+        <span>Total:</span>
+        <span class="total-amount" id="cartTotal">₹0</span>
+      </div>
+      
+      <div class="cart-actions">
+        <button class="btn-clear" id="clearCart">Clear Cart</button>
+        <button class="btn-whatsapp" id="whatsappOrder">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.864 3.488"/>
+          </svg>
+          Order via WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>   
+
+  <script>
+    // Menu Data   
+    const data = [ 
+
+
+
+  {"id": 1, "cat": "VEG", "name": "TEA / चहा", "price": "20 RS", "desc": "Regular hot tea", "tags": ["Veg"], "img": "img/tea.jpg"},
+  {"id": 2, "cat": "VEG", "name": "COFEE / कॉफी", "price": "25 RS", "desc": "Hot coffee", "tags": ["Veg"], "img": "img/cofee.jpg"},
+  {"id": 3, "cat": "VEG", "name": "BLACK TEA / कोरा चहा", "price": "15 RS", "desc": "Tea without milk", "tags": ["Veg"], "img": "img/black_tea.jpg"},
+  {"id": 4, "cat": "VEG", "name": "MASALA PAPAD / मसाला पापड", "price": "30 RS", "desc": "Crispy papad with spices and veg", "tags": ["Veg"], "img": "img/masala_papad.jpg"},
+  {"id": 5, "cat": "VEG", "name": "ROASTED PAPAD / भाजलेला पापड", "price": "20 RS", "desc": "Plain roasted papad", "tags": ["Veg"], "img": "img/roasted_papad.jpg"},
+  {"id": 6, "cat": "VEG", "name": "PAPAD / पापड", "price": "20 RS", "desc": "Fried or roasted papad", "tags": ["Veg"], "img": "img/papad.jpg"},
+  {"id": 7, "cat": "VEG", "name": "BHAJI / भजी", "price": "50 RS", "desc": "Freshly fried vegetable fritters", "tags": ["Veg"], "img": "img/bhaji.jpg"},
+  {"id": 8, "cat": "VEG", "name": "POHE / पोहे", "price": "50 RS", "desc": "Flattened rice with onions", "tags": ["Veg"], "img": "img/pohe.jpg"},
+  {"id": 9, "cat": "VEG", "name": "UPIT / उपीट", "price": "50 RS", "desc": "Savory semolina breakfast", "tags": ["Veg"], "img": "img/upit.jpg"},
+  {"id": 10, "cat": "VEG", "name": "MAGGI / मॅगी", "price": "50 RS", "desc": "Instant noodles with masala", "tags": ["Veg"], "img": "img/maggi.jpg"},
+  {"id": 11, "cat": "VEG", "name": "MISSAL / मिसळ", "price": "80 RS", "desc": "Spicy sprouts curry with bread", "tags": ["Veg"], "img": "img/missal.jpg"},
+  {"id": 12, "cat": "VEG", "name": "SHENGDANILE / शेंगदाणे", "price": "50 RS", "desc": "Spiced or roasted peanuts", "tags": ["Veg"], "img": "img/shengdanile.jpg"},
+  {"id": 13, "cat": "VEG", "name": "FARSAN / फरसाण", "price": "50 RS", "desc": "Mix crispy snacks", "tags": ["Veg"], "img": "img/farsan.jpg"},
+  {"id": 14, "cat": "THALI", "name": "VEG THALI / व्हेज थाळी", "price": "250 RS", "desc": "2 Sabji, Taluka Fry, 1 Sweet, 2 Chapati/Bhakri, Rice", "tags": ["Veg"], "img": "img/veg_thali.jpg"},
+  {"id": 15, "cat": "THALI DETAILS", "name": "2 Sabji / २ भाजी", "price": "0 RS", "desc": "Vegetable curries in thali", "tags": ["Veg"], "img": "img/two_sabji.jpg"},
+  {"id": 16, "cat": "THALI DETAILS", "name": "Taluka Fry / तालुका फ्राय", "price": "0 RS", "desc": "Special veg fry in thali", "tags": ["Veg"], "img": "img/taluka_fry.jpg"},
+  {"id": 17, "cat": "THALI DETAILS", "name": "1 Sweet / १ गोड पदार्थ", "price": "0 RS", "desc": "Sweet dish in thali", "tags": ["Veg"], "img": "img/one_sweet.jpg"},
+  {"id": 18, "cat": "THALI DETAILS", "name": "2 Chapati / Jwari Bhakri (२ चपाती / ज्वारी भाकरी)", "price": "0 RS", "desc": "Bread options in thali", "tags": ["Veg"], "img": "img/chapati_bhakri.jpg"},
+  {"id": 19, "cat": "THALI DETAILS", "name": "Indrani Rice / इंद्रायणी भात", "price": "0 RS", "desc": "Fragrant rice in thali", "tags": ["Veg"], "img": "img/indrani_rice.jpg"},
+  {"id": 20, "cat": "THALI", "name": "CHICKEN THALI / चिकन थाळी", "price": "350 RS", "desc": "Chicken Rasa, Sukha, Alni Soup, 2 Bhakri/Chapati, Rice", "tags": ["Non-Veg"], "img": "img/chicken_thali.jpg"},
+  {"id": 21, "cat": "THALI DETAILS", "name": "Chicken Rasa / चिकन रस्सा", "price": "0 RS", "desc": "Chicken gravy in thali", "tags": ["Non-Veg"], "img": "img/chicken_rasa.jpg"},
+  {"id": 22, "cat": "THALI DETAILS", "name": "Chicken Sukha / चिकन सुक्का", "price": "0 RS", "desc": "Dry chicken in thali", "tags": ["Non-Veg"], "img": "img/chicken_sukha_detail.jpg"},
+  {"id": 23, "cat": "THALI DETAILS", "name": "Alni Soup / आळणी सूप", "price": "0 RS", "desc": "Non-spicy chicken broth in thali", "tags": ["Non-Veg"], "img": "img/alni_soup.jpg"},
+  {"id": 24, "cat": "NON-VEG", "name": "CHICKEN SUKHA / चिकन सुक्का", "price": "150 RS", "desc": "Portion of dry spiced chicken", "tags": ["Non-Veg"], "img": "img/chicken_sukha.jpg"},
+  {"id": 25, "cat": "NON-VEG", "name": "CHICKEN BBQ / चिकन बी.बी.क्यू", "price": "100 RS", "desc": "Grilled chicken pieces", "tags": ["Non-Veg"], "img": "img/chicken_bbq.jpg"},
+  {"id": 26, "cat": "NON-VEG", "name": "BOIL EGG / उकडलेले अंडे", "price": "15 RS", "desc": "Single boiled egg", "tags": ["Non-Veg"], "img": "img/boil_egg.jpg"},
+  {"id": 27, "cat": "NON-VEG", "name": "BREAD OMELETTE / ब्रेड ऑम्लेट", "price": "100 RS", "desc": "Egg omelette with bread", "tags": ["Non-Veg"], "img": "img/bread_omelette.jpg"},
+  {"id": 28, "cat": "NON-VEG", "name": "ANDA BHURJI / अंडा भुर्जी", "price": "50 RS", "desc": "Scrambled eggs with spices", "tags": ["Non-Veg"], "img": "img/anda_bhurji.jpg"},
+  {"id": 29, "cat": "NON-VEG", "name": "ANDA MASALA / अंडा मसाला", "price": "70 RS", "desc": "Egg curry in spicy masala", "tags": ["Non-Veg"], "img": "img/anda_masala.jpg"},
+  {"id": 30, "cat": "THALI", "name": "MATTAN THALI / मटण थाळी", "price": "600 RS", "desc": "Special mutton thali", "tags": ["Non-Veg"], "img": "img/mattan_thali.jpg"},
+  {"id": 31, "cat": "THALI", "name": "FISH THALI / फिश थाळी", "price": "700 RS", "desc": "Fish fry and curry thali", "tags": ["Non-Veg"], "img": "img/fish_thali.jpg"},
+  {"id": 32, "cat": "COLDRINKS", "name": "LIMBU SHARBAT / लिंबू शरबत", "price": "30 RS", "desc": "Refreshing lemon drink", "tags": ["Veg"], "img": "img/limbu_sharbat.jpg"},
+  {"id": 33, "cat": "COLDRINKS", "name": "THUMSUP 600ML / थम्सअप ६०० मिली", "price": "50 RS", "desc": "Thums Up bottle", "tags": ["Veg"], "img": "img/thumsup_600ml.jpg"},
+  {"id": 34, "cat": "COLDRINKS", "name": "THUMSUP 250ML / थम्सअप २५० मिली", "price": "25 RS", "desc": "Thums Up small bottle", "tags": ["Veg"], "img": "img/thumsup_600ml.jpg"},
+  {"id": 35, "cat": "COLDRINKS", "name": "SPRIT 600ML / स्प्राइट ६०० मिली", "price": "50 RS", "desc": "Sprite bottle", "tags": ["Veg"], "img": "img/sprit_600ml.jpg"},
+  {"id": 36, "cat": "COLDRINKS", "name": "SPRIT 250ML / स्प्राइट २५० मिली", "price": "25 RS", "desc": "Sprite small bottle", "tags": ["Veg"], "img": "img/sprit_600ml.jpg"},
+  {"id": 37, "cat": "COLDRINKS", "name": "RED BULL 250ML / रेड बुल २५० मिली", "price": "150 RS", "desc": "Energy drink can", "tags": ["Veg"], "img": "img/red_bull_250ml.jpg"},
+  {"id": 38, "cat": "LIQUOR (QTR)", "name": "IB / आय.बी.", "price": "250 RS", "desc": "Imperial Blue Quarter / इम्पेरिअल ब्लू क्वार्टर", "tags": ["Alcohol"], "img": "img/ib.jpg"},
+  {"id": 39, "cat": "LIQUOR (QTR)", "name": "No 1 / नंबर १", "price": "250 RS", "desc": "McDowell's No.1 Quarter / मॅकडोवेल नंबर १ क्वार्टर", "tags": ["Alcohol"], "img": "img/no_1.jpg"},
+  {"id": 40, "cat": "LIQUOR (QTR)", "name": "Royal Stag / रॉयल स्टॅग", "price": "280 RS", "desc": "Royal Stag Quarter / रॉयल स्टॅग क्वार्टर", "tags": ["Alcohol"], "img": "img/royal_stag.jpg"},
+  {"id": 41, "cat": "LIQUOR (QTR)", "name": "Royal Challenge / रॉयल चॅलेंज", "price": "290 RS", "desc": "Royal Challenge Quarter / रॉयल चॅलेंज क्वार्टर", "tags": ["Alcohol"], "img": "img/royal_challenge.jpg"},
+  {"id": 42, "cat": "LIQUOR (QTR)", "name": "Blender Pride / ब्लेंडर्स प्राईड", "price": "410 RS", "desc": "Blenders Pride Quarter / ब्लेंडर्स प्राईड क्वार्टर", "tags": ["Alcohol"], "img": "img/blender_pride.jpg"},
+  {"id": 43, "cat": "LIQUOR (QTR)", "name": "DSP Black / डी.एस.पी. ब्लॅक", "price": "240 RS", "desc": "DSP Black Quarter / डी.एस.पी. ब्लॅक क्वार्टर", "tags": ["Alcohol"], "img": "img/dsp_black.jpg"},
+  {"id": 44, "cat": "LIQUOR (QTR)", "name": "Old Monk / ओल्ड माँक", "price": "240 RS", "desc": "Old Monk Rum Quarter / ओल्ड माँक रम क्वार्टर", "tags": ["Alcohol"], "img": "img/old_monk.jpg"},
+  {"id": 45, "cat": "LIQUOR (QTR)", "name": "Romanov Vodka / रोमानोव्ह व्होडका", "price": "250 RS", "desc": "Romanov Vodka Quarter / रोमानोव्ह व्होडका क्वार्टर", "tags": ["Alcohol"], "img": "img/romanov_vodka.jpg"},
+  {"id": 46, "cat": "WINE", "name": "Breezer Wine / ब्रिझर वाईन", "price": "190 RS", "desc": "Breezer Wine Bottle / ब्रिझर वाईन बाटली", "tags": ["Alcohol"], "img": "img/breezer_wine.jpg"},
+  {"id": 47, "cat": "BEER", "name": "Tuberg / ट्युबर्ग", "price": "250 RS", "desc": "Tuborg Beer Bottle / ट्युबर्ग बिअर बाटली", "tags": ["Alcohol"], "img": "img/tuberg.jpg"},
+  {"id": 48, "cat": "BEER", "name": "Kingfisher / किंगफिशर", "price": "250 RS", "desc": "Kingfisher Beer Bottle / किंगफिशर बिअर बाटली", "tags": ["Alcohol"], "img": "img/kingfisher.jpg"},
+  {"id": 49, "cat": "BEER", "name": "Magnum / मॅग्नम", "price": "300 RS", "desc": "Kingfisher Magnum Beer / किंगफिशर मॅग्नम बिअर", "tags": ["Alcohol"], "img": "img/magnum.jpg"},
+
+
+
+{id: 100, cat: 'cigarettes', name: 'Iceburst सिगरेट', desc: '10/20 = 200/400', price: '₹200/₹400', tags: ['Cigarettes'], img: 'img/iceburst.jpg'},
+{id: 101, cat: 'cigarettes', name: 'Advance सिगरेट', desc: '10/20 = 200/400', price: '₹200/₹400', tags: ['Cigarettes'], img: 'img/advance.jpg'},
+{id: 102, cat: 'cigarettes', name: 'मोठी गोल्ड सिगरेट', desc: '10 नग = 200', price: '₹200', tags: ['Cigarettes'], img: 'img/mothi-gold.jpg'},
+{id: 103, cat: 'cigarettes', name: 'क्लासिक mild सिगरेट', desc: '10/20 = 200/400', price: '₹200/₹400', tags: ['Cigarettes'], img: 'img/classic-mild.jpg'},
+{id: 104, cat: 'cigarettes', name: 'गरम सिगरेट', desc: '12 नग = 240', price: '₹240', tags: ['Cigarettes'], img: 'img/garam.jpg'},
+{id: 105, cat: 'cigarettes', name: 'छोटी गोल्ड सिगरेट', desc: '10 नग = 120', price: '₹120', tags: ['Cigarettes'], img: 'img/chhoti-gold.jpg'},
+{id: 106, cat: 'cigarettes', name: 'Glite सिगरेट', desc: '10 नग = 200', price: '₹200', tags: ['Cigarettes'], img: 'img/glite.jpg'},
+{id: 107, cat: 'cigarettes', name: 'शिफ्ट सिगरेट', desc: '10/20 = 150/300', price: '₹150/₹300', tags: ['Cigarettes'], img: 'img/shift.jpg'},
+{id: 108, cat: 'cigarettes', name: 'क्लासिक कनेक्ट सिगरेट', desc: '10/20 = 150/300', price: '₹150/₹300', tags: ['Cigarettes'], img: 'img/classic-connect.jpg'},
+{id: 109, cat: 'cigarettes', name: 'Four square सिगरेट', desc: '10 नग = 100', price: '₹100', tags: ['Cigarettes'], img: 'img/four-square.jpg'},
+{id: 110, cat: 'cigarettes', name: 'Indiment सिगरेट', desc: '10 नग = 120', price: '₹120', tags: ['Cigarettes'], img: 'img/indiment.jpg'},
+{id: 111, cat: 'cigarettes', name: 'छोटी गोल्ड सिगरेट', desc: '10 नग = 120', price: '₹120', tags: ['Cigarettes'], img: 'img/chhoti-gold-2.jpg'},
+
+
+
+
+];
+
+    // Cart functionality
+    let cart = [];
+    const cartButton = document.getElementById('cartButton');
+    const cartModal = document.getElementById('cartModal');
+    const closeCart = document.getElementById('closeCart');
+    const cartItems = document.getElementById('cartItems');
+    const cartEmpty = document.getElementById('cartEmpty');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const clearCart = document.getElementById('clearCart');
+    const whatsappOrder = document.getElementById('whatsappOrder');
+    const customerBillingSummary = document.getElementById('customerBillingSummary');
+
+    // Helper function to extract price number from price string
+    function extractPriceNumber(priceString) {
+      // Remove currency symbols and text, keep only numbers
+      const priceMatch = priceString.match(/(\d+)/);
+      return priceMatch ? parseInt(priceMatch[1]) : 0;
+    }
+
+    // Helper function to format price for display
+    function formatPrice(price) {
+      return `₹${price}`;
+    }
+
+    // Update customer billing summary
+    function updateBillingSummary() {
+      const customerName = document.getElementById('customerName').value.trim();
+      const roomNumber = document.getElementById('roomNumber').value.trim();
+      const customerMobile = document.getElementById('customerMobile').value.trim();
+      
+      let summaryHTML = '';
+      let showSummary = false;
+      
+      if (customerName || roomNumber || customerMobile) {
+        showSummary = true;
+        summaryHTML = `
+          <div class="summary-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            Customer Billing Summary
+          </div>
+          <div class="summary-details">
+            ${customerName ? `<div><strong>Customer Name:</strong> ${customerName}</div>` : ''}
+            ${roomNumber ? `<div><strong>Room Number:</strong> ${roomNumber}</div>` : ''}
+            ${customerMobile ? `<div><strong>Mobile Number:</strong> ${customerMobile}</div>` : ''}
+            <div><strong>Resort:</strong> रावजी पाटील RESORT & BAR</div>
+          </div>
+        `;
+      }
+      
+      if (showSummary) {
+        customerBillingSummary.innerHTML = summaryHTML;
+        customerBillingSummary.classList.add('active');
+      } else {
+        customerBillingSummary.classList.remove('active');
+      }
+    }
+
+    // Toggle cart modal
+    cartButton.addEventListener('click', () => {
+      cartModal.classList.add('open');
+      updateBillingSummary();
+    });
+
+    closeCart.addEventListener('click', () => {
+      cartModal.classList.remove('open');
+    });
+
+    // Add to cart function with animation
+    function addToCart(item, button) {
+      const existingItem = cart.find(cartItem => cartItem.id === item.id);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          priceNumber: extractPriceNumber(item.price),
+          quantity: 1
+        });
+      }
+      
+      updateCart();
+      
+      // Animation effect
+      button.classList.add('adding');
+      button.innerHTML = 'Adding...';
+      
+      setTimeout(() => {
+        button.classList.remove('adding');
+        button.classList.add('added');
+        button.innerHTML = '✓ Added';
+        
+        setTimeout(() => {
+          button.classList.remove('added');
+          button.innerHTML = 'Add to Cart';
+        }, 1000);
+      }, 500);
+    }
+
+    // Remove from cart function
+    function removeFromCart(itemId) {
+      cart = cart.filter(item => item.id !== itemId);
+      updateCart();
+    }
+
+    // Update quantity function
+    function updateQuantity(itemId, change) {
+      const item = cart.find(item => item.id === itemId);
+      
+      if (item) {
+        item.quantity += change;
+        
+        if (item.quantity <= 0) {
+          removeFromCart(itemId);
+        } else {
+          updateCart();
+        }
+      }
+    }
+
+    // Update cart display
+    function updateCart() {
+      // Update cart count
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCount.textContent = totalItems;
+      
+      // Update cart items
+      if (cart.length === 0) {
+        cartEmpty.style.display = 'block';
+        cartItems.innerHTML = '';
+      } else {
+        cartEmpty.style.display = 'none';
+        
+        let itemsHTML = '';
+        let totalAmount = 0;
+        
+        cart.forEach(item => {
+          const itemTotal = item.priceNumber * item.quantity;
+          totalAmount += itemTotal;
+          
+          itemsHTML += `
+            <div class="cart-item">
+              <div class="item-info">
+                <div class="item-name">${item.name}</div>
+                <div class="item-price">${item.price}</div>
+              </div>
+              <div class="item-quantity">
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                <span class="quantity">${item.quantity}</span>
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                <button class="remove-item" onclick="removeFromCart(${item.id})">×</button>
+              </div>
+            </div>
+          `;
+        });
+        
+        cartItems.innerHTML = itemsHTML;
+        cartTotal.textContent = formatPrice(totalAmount);
+      }
+    }
+
+    // Clear cart
+    clearCart.addEventListener('click', () => {
+      cart = [];
+      updateCart();
+    });
+
+    // WhatsApp order function with customer details
+    whatsappOrder.addEventListener('click', () => {
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      
+      // Validate required fields
+      const customerName = document.getElementById('customerName').value.trim();
+      const roomNumber = document.getElementById('roomNumber').value.trim();
+      
+      if (!customerName || !roomNumber) {
+        alert('Please fill in Customer Name and Room Number before ordering.');
+        return;
+      }
+      
+      const customerMobile = document.getElementById('customerMobile').value.trim();
+      
+      let message = `Hello! I would like to place an order from रावजी पाटील RESORT & BAR:\n\n`;
+      
+      // Add customer billing details
+      message += `**Customer Billing Information:**\n`;
+      message += `• **Name:** ${customerName}\n`;
+      message += `• **Room Number:** ${roomNumber}\n`;
+      if (customerMobile) {
+        message += `• **Mobile:** ${customerMobile}\n`;
+      }
+      message += `• **Resort:** रावजी पाटील RESORT & BAR\n`;
+      message += `• **Contact:** +91 90111 61010\n\n`;
+      
+      message += `**Order Details:**\n`;
+      
+      cart.forEach(item => {
+        message += `• ${item.name} - ${item.quantity} x ${item.price}\n`;
+      });
+      
+      const totalAmount = cart.reduce((sum, item) => {
+        return sum + (item.priceNumber * item.quantity);
+      }, 0);
+      
+      message += `\n**Total Amount:** ₹${totalAmount}\n\n`;
+      message += `Please deliver to Room ${roomNumber}.\n\n`;
+      message += `Thank you!`;
+      
+      // Encode the message for WhatsApp URL
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://wa.me/919011161010?text=${encodedMessage}`;
+      
+      // Open WhatsApp in a new tab
+      window.open(whatsappURL, '_blank');
+      
+      // Close cart modal after order
+      setTimeout(() => {
+        cartModal.classList.remove('open');
+      }, 1000);
+    });
+
+    // Render menu items
+    function renderMenuItems(items) {
+      const menuGrid = document.getElementById('menuGrid');
+      
+      if (items.length === 0) {
+        menuGrid.innerHTML = '<p style="text-align:center;color:var(--muted);grid-column:1/-1;padding:40px 20px">No items found</p>';
+        return;
+      }
+      
+      menuGrid.innerHTML = items.map(item => `
+        <div class="card" data-cat="${item.cat}">
+          <div class="card-header">
+            <div class="thumb">
+              <img src="${item.img}" alt="${item.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBmaWxsPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDMpIi8+CjxwYXRoIGQ9Ik03MCA4MEgxMTBNODAgNzBWOTBNNjUgOTVIMTA1TTk1IDY1VjEwNU02NSA2NVYxMDVNNzUgNzVIOThNNzUgODVIOThNNzUgOTVIOThNNzUgMTA1SDk4TTY1IDc1SDcyTTY1IDg1SDcyTTY1IDk1SDcyTTY1IDEwNUg3Mk0xMDggNzVIMTE1TTEwOCA4NUgxMTVNMTA4IDk1SDExNU0xMDggMTA1SDExNSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+'">
+            </div>
+            <div class="card-info">
+              <h3 class="dish">${item.name}</h3>
+              <p class="desc">${item.desc}</p>
+              <div class="tags">
+                ${item.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="price">${item.price}</div>
+            <button class="btn-primary" onclick="addToCart(${JSON.stringify(item).replace(/"/g, '&quot;')}, this)">Add to Cart</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter menu items by category
+    function filterByCategory(category) {
+      if (category === 'all') {
+        renderMenuItems(data);
+      } else {
+        const filteredItems = data.filter(item => item.cat === category);
+        renderMenuItems(filteredItems);
+      }
+    }
+
+    // Search functionality
+    function searchItems(query) {
+      const filteredItems = data.filter(item => 
+        item.name.toLowerCase().includes(query.toLowerCase()) || 
+        item.desc.toLowerCase().includes(query.toLowerCase()) ||
+        item.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
+      );
+      renderMenuItems(filteredItems);
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      // Render menu items
+      renderMenuItems(data);
+      
+      // Tab functionality
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          filterByCategory(tab.dataset.cat);
+        });
+      });
+      
+      // Search functionality
+      document.getElementById('search').addEventListener('input', (e) => {
+        searchItems(e.target.value);
+      });
+      
+      // Update billing summary when form inputs change
+      document.getElementById('customerName').addEventListener('input', updateBillingSummary);
+      document.getElementById('roomNumber').addEventListener('input', updateBillingSummary);
+      document.getElementById('customerMobile').addEventListener('input', updateBillingSummary);
+    });
+
+    // Make functions available globally
+    window.addToCart = addToCart;
+    window.removeFromCart = removeFromCart;
+    window.updateQuantity = updateQuantity;
+    window.updateBillingSummary = updateBillingSummary;
+  </script>
+</body>
+</html>
